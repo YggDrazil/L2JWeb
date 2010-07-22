@@ -2,11 +2,11 @@
 /**********************************************************************/
 /* Project Name.: L2J-Web							*/
 /* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
-/* File Name....: index.php							*/
+/* File Name....: login.php							*/
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
-/* Created On...: 09/01/2007 10:20:02 PM					*/
-/* Last Updated.: 22/07/2010 10:04:46 AM					*/
+/* Created On...: 23/01/2007 9:25:28 PM					*/
+/* Last Updated.: 22/07/2010 10:46:26 AM					*/
 /**********************************************************************/
 include('config.inc.php');
 include('lib.inc.php');
@@ -21,7 +21,7 @@ if(isset($_COOKIE['WYDL2j']))
 	$username = $_COOKIE['WYDL2j']; 
 	$pass = $_COOKIE['WYDL2jkey'];
 	
-	$check = mysql_query("SELECT password FROM accounts WHERE login = '$username'")or die(mysql_error());
+	$check = mysql_query("SELECT * FROM accounts WHERE login = '$username'")or die(mysql_error());
 
 	while($info = mysql_fetch_array( $check )) 	
 		{
@@ -35,7 +35,7 @@ if(isset($_COOKIE['WYDL2j']))
 			{
 			include('header.inc.php');
 			include('menu.php');
-			include('member.php');
+			echo "You are already logged in, you can logout <a href=\"logout.php\">here</a>!";
 			exit;
 			}
 
@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) { // if form has been submitted
 	if (!get_magic_quotes_gpc()) {
 		$_POST['email'] = addslashes($_POST['email']);
 	}
-	$check = mysql_query("SELECT password, accessLevel FROM accounts WHERE login = '".$_POST['username']."'")or die(mysql_error());
+	$check = mysql_query("SELECT * FROM accounts WHERE login = '".$_POST['username']."'")or die(mysql_error());
 
 //Gives error if user dosen't exist
 $check2 = mysql_num_rows($check);
@@ -77,14 +77,14 @@ else
 {
 // if login is ok then we add a cookie 
 $_POST['username'] = stripslashes($_POST['username']);
-$hour = time() + 3600; 
+$hour = time() + 43200; 
 setcookie(WYDL2j, $_POST['username'], $hour, '/', 'wydgaming.com');
 setcookie(WYDL2jkey, $_POST['pass'], $hour, '/', 'wydgaming.com');	
-setcookie(WYDL2jAL, $info['accessLevel'], $hour, '/', 'wydgaming.com');	
+setcookie(WYDL2jAL, $info['access_level'], $hour, '/', 'wydgaming.com');	
 
 //then redirect them to the members area
 print "<script language=\"JavaScript\">";
-print "window.location = 'index.php' ";
+print "window.location = 'players.php' ";
 print "</script>";
 }
 
@@ -92,7 +92,6 @@ print "</script>";
 dbclose();
 } else {	
 include('header.inc.php');
-include('menu.php');
 // if they are not logged in
 echo "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
 echo "<table border=\"0\">";

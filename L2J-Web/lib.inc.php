@@ -1,12 +1,13 @@
 <?php
-/*************************************************/
-/* Project Name.: L2J-Web				*/
-/* File Name....: lib.inc.php			*/
-/* Author.......: Sebastien Gascon			*/
-/* Author Email.: sebastien.gascon@gmail.com	*/
-/* Created On...: 22/01/2007 11:37:24 PM		*/
-/* Last Updated.: 22/07/2010 10:05:08 AM		*/
-/*************************************************/
+/**********************************************************************/
+/* Project Name.: L2J-Web							*/
+/* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
+/* File Name....: lib.inc.php						*/
+/* Author.......: Sebastien Gascon						*/
+/* Author Email.: sebastien.gascon@gmail.com				*/
+/* Created On...: 22/01/2007 11:37:24 PM					*/
+/* Last Updated.: 22/07/2010 10:05:08 AM					*/
+/**********************************************************************/
 
 /** Establishing the DB Connection **/
 function dbconnect(){
