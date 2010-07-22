@@ -1,12 +1,13 @@
 <?php
-/*************************************************/
-/* Project Name.: L2J-Web				*/
-/* File Name....: header.inc.php			*/
-/* Author.......: Sebastien Gascon			*/
-/* Author Email.: sebastien.gascon@gmail.com	*/
-/* Created On...: 24/12/2006 12:53:45 PM		*/
-/* Last Updated.: 22/07/2010 10:04:00 AM		*/
-/*************************************************/
+/**********************************************************************/
+/* Project Name.: L2J-Web							*/
+/* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
+/* File Name....: header.inc.php						*/
+/* Author.......: Sebastien Gascon						*/
+/* Author Email.: sebastien.gascon@gmail.com				*/
+/* Created On...: 24/12/2006 12:53:45 PM					*/
+/* Last Updated.: 22/07/2010 10:04:00 AM					*/
+/**********************************************************************/
 echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n";
 echo "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n";

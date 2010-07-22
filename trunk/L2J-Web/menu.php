@@ -1,13 +1,13 @@
 <?php
-/*************************************************/
-/* Project Name.: L2J-Web				*/
-/* File Name....: menu.php				*/
-/* Author.......: Sebastien Gascon			*/
-/* Author Email.: sebastien.gascon@gmail.com	*/
-/* Last Updated.: 2007-01-25 09:09			*/
-/* Created On...: 25/01/2007 9:09:42 AM		*/
-/* Last Updated.: 22/07/2010 10:06:40 AM		*/
-/*************************************************/
+/**********************************************************************/
+/* Project Name.: L2J-Web							*/
+/* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
+/* File Name....: menu.php							*/
+/* Author.......: Sebastien Gascon						*/
+/* Author Email.: sebastien.gascon@gmail.com				*/
+/* Created On...: 25/01/2007 9:09:42 AM					*/
+/* Last Updated.: 22/07/2010 10:06:40 AM					*/
+/**********************************************************************/
 echo "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" background=\"images/header/hmm.jpg\">";
 echo "<tr>";
 echo "<td width=\"361\" height=\"224\" valign=\"top\" colspan=\"5\"><img src=\"images/header/A.jpg\" width=\"361\" height=\"224\"></td>";
