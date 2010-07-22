@@ -52,7 +52,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 0){
 		echo "<td class=\"id\">$mob_id</td>";
 	}
-	echo "<td class=\"name\">$mob_name</td>";
+	echo "<td class=\"name\"><a href=\"map.php?mobid=$mob_id\">$mob_name</a></td>";
 	echo "<td class=\"level\">$mob_level</td>";
 	echo "<td class=\"hp\">$mob_hp</td>";
 	echo "</tr>";
