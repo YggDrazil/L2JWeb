@@ -6,12 +6,12 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 9:25:28 PM					*/
-/* Last Updated.: 22/07/2010 10:46:26 AM					*/
+/* Last Updated.: 23/07/2010 9:29:55 AM					*/
 /**********************************************************************/
 include('config.inc.php');
 include('lib.inc.php');
 
-dbconnectauth();
+dbconnect();
 
 //Checks if there is a login cookie
 if(isset($_COOKIE['WYDL2j']))
@@ -78,9 +78,9 @@ else
 // if login is ok then we add a cookie 
 $_POST['username'] = stripslashes($_POST['username']);
 $hour = time() + 43200; 
-setcookie(WYDL2j, $_POST['username'], $hour, '/', 'wydgaming.com');
-setcookie(WYDL2jkey, $_POST['pass'], $hour, '/', 'wydgaming.com');	
-setcookie(WYDL2jAL, $info['access_level'], $hour, '/', 'wydgaming.com');	
+setcookie(WYDL2j, $_POST['username'], $hour, '/', $cookiedomain);
+setcookie(WYDL2jkey, $_POST['pass'], $hour, '/', $cookiedomain);	
+setcookie(WYDL2jAL, $info['access_level'], $hour, '/', $cookiedomain);	
 
 //then redirect them to the members area
 print "<script language=\"JavaScript\">";
