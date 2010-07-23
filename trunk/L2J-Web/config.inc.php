@@ -18,5 +18,6 @@ $dbname="";
 $dbuser="";
 //Password to the MySQL Database
 $dbpass="";
-
+//Cookie Domain
+$cookiedomain="";
 ?>

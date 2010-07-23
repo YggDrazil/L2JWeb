@@ -8,7 +8,6 @@
 /* Created On...: 10/01/2007 09:58:58 PM					*/
 /* Last Updated.: 22/07/2010 10:40:12 AM					*/
 /**********************************************************************/
-include('loadtimestart.php');
 include('header.inc.php');
 include('config.inc.php');
 include('lib.inc.php');
@@ -68,6 +67,5 @@ if($accesslevel < 100){
 	}
 }
 dbclose();
-include('loadtimeend.php');
 include('footer.inc.php');
 ?>

@@ -16,12 +16,6 @@ function dbconnect(){
 	/** Selecting the good DB **/
 	mysql_select_db($dbname) or die(mysql_error());
 }
-function dbconnectauth(){
-	global $dbhost, $dbuser, $dbpass, $conn, $dbname;
-	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-	/** Selecting the good DB **/
-	mysql_select_db($dbname) or die(mysql_error());
-}
 
 function dbclose(){
 	global $conn;

@@ -11,7 +11,7 @@
 include('config.inc.php');
 include('lib.inc.php');
 
-dbconnectauth();
+dbconnect();
 
 //Checks if there is a login cookie
 if(isset($_COOKIE['WYDL2j']))
@@ -36,6 +36,7 @@ if(isset($_COOKIE['WYDL2j']))
 			include('header.inc.php');
 			include('menu.php');
 			include('member.php');
+			include('footer.inc.php');
 			exit;
 			}
 
@@ -78,9 +79,9 @@ else
 // if login is ok then we add a cookie 
 $_POST['username'] = stripslashes($_POST['username']);
 $hour = time() + 3600; 
-setcookie(WYDL2j, $_POST['username'], $hour, '/', 'wydgaming.com');
-setcookie(WYDL2jkey, $_POST['pass'], $hour, '/', 'wydgaming.com');	
-setcookie(WYDL2jAL, $info['accessLevel'], $hour, '/', 'wydgaming.com');	
+setcookie(WYDL2j, $_POST['username'], $hour, '/', $cookiedomain);
+setcookie(WYDL2jkey, $_POST['pass'], $hour, '/', $cookiedomain);	
+setcookie(WYDL2jAL, $info['accessLevel'], $hour, '/', $cookiedomain);	
 
 //then redirect them to the members area
 print "<script language=\"JavaScript\">";
@@ -108,7 +109,7 @@ echo "<input type=\"submit\" name=\"submit\" value=\"Login\">";
 echo "</td></tr>";
 echo "</table>";
 echo "</form>";
-
+include('footer.inc.php');
 }
 
 

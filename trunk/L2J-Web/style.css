@@ -1,0 +1,38 @@
+/*************************************************/
+/* Project Name.: WYD Lineage 2 Website		*/
+/* File Name....: styles.css			*/
+/* Author.......: The_Dogg 				*/
+/* Author Email.: The_Dogg@springfield-u.com	*/
+/* Last Updated.: 24/12/2006 12:53			*/
+/*************************************************/
+
+BODY		{ color: #c2c2c2; margin: 0; background-color: #373c3d; font-family: Verdana,sans-serif; font-size: 10pt; text-align: center }
+INPUT		{ border: 2px solid #000000; background-color: #ffffff; color: #000000; font-family: Verdana,sans-serif; font-weight: bold; font-size: 8pt }
+SELECT		{ border: 2px solid #000000; background-color: #ffffff; color: #000000; font-family: Verdana,sans-serif; font-weight: bold; font-size: 8pt }
+A:link        { color: #e36c1b; font-size: 11px; font-family: Verdana, sans-serif; text-decoration: none }
+A:active      { color: #e36c1b; font-size: 11px; font-family: Verdana, sans-serif; text-decoration: none }
+A:visited	{ color: #e36c1b; font-size: 11px; font-family: Verdana, sans-serif; text-decoration: none }
+A:hover       { color: #e36c1b; font-size: 11px; font-family: Verdana, sans-serif; text-decoration: underline }
+table 		{ margin-left:auto; margin-right:auto; }
+/*TD		{ border: 2px solid #656565; }*/
+TD.id		{ width: 39px; text-align: center }
+TD.name	{ width: 236px; text-align: left }
+TD.type	{ width: 100px; text-align: center }
+TD.grade	{ width: 40px; text-align: center }
+TD.pmatk	{ width: 58px; text-align: center }
+TD.ssspsmp 	{ width: 70pX; text-align: center }
+TD.speed	{ width: 38px; text-align: center }
+TD.weight	{ width: 47px; text-align: center }
+TD.price	{ width: 69px; text-align: center }
+TD.pdef	{ width: 33px; text-align: center }
+TD.mdef	{ width: 33px; text-align: center }
+TD.mp		{ width: 23px; text-align: center } 
+TD.hp		{ width: 23px; text-align: center } 
+TD.level	{ width: 39px; text-align: center } 
+TD.chance	{ width: 80px; text-align: center } 
+
+TD.cs1		{ width: 30px; text-align: center } 
+TD.cs2		{ width: 100px; text-align: center } 
+
+TR.line1	{ background-color: #757575 }
+TR.line2	{ background-color: #505050 }
