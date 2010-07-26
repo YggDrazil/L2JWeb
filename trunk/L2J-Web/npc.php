@@ -2,11 +2,11 @@
 /**********************************************************************/
 /* Project Name.: L2J-Web							*/
 /* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
-/* File Name....: monsters.php						*/
+/* File Name....: npc.php							*/
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
-/* Created On...: 14/07/2010 10:38:29 AM					*/
-/* Last Updated.: 26/07/2010 12:20:34 PM					*/
+/* Created On...: 26/07/2010 12:16:41 PM					*/
+/* Last Updated.: 26/07/2010 12:16:43 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -18,7 +18,7 @@ include('member.php');
 
 echo "<br/><br/>";
 //Begin searchbar
-echo "<form method=\"post\" action=\"monsters.php\">";
+echo "<form method=\"post\" action=\"npc.php\">";
 echo "<div>";
 echo "Search String:";
 echo "<input type=\"text\" name=\"sstring\"/>";
@@ -35,7 +35,7 @@ dbconnect();
 if (empty($_POST[sstring])){
 	echo "Please Enter Search String\n";
 }else{
-	$sql = "SELECT * FROM npc WHERE name LIKE '%$_POST[sstring]%' and class LIKE 'LineageMonster%' LIMIT 0,1000";
+	$sql = "SELECT * FROM npc WHERE name LIKE '%$_POST[sstring]%' and class LIKE 'LineageNPC%' LIMIT 0,1000";
 	echo "Search results for \"$_POST[sstring]\":<br/>";
 
 echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\">\n";
@@ -50,9 +50,9 @@ echo "</tr>";
 $result = mysql_query($sql, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
-	$mob_id = $newArray['id'];
-	$mob_name = $newArray['name'];
-	$mob_level = $newArray['level'];
+	$npc_id = $newArray['id'];
+	$npc_name = $newArray['name'];
+	$npc_level = $newArray['level'];
 	if ($i %2){
 			$linebg = 'line1';
 		}else{
@@ -60,11 +60,11 @@ while ($newArray = mysql_fetch_array($result)) {
 		}
 	echo "<tr class=\"$linebg\">";
 	if($accesslevel >= 100){
-		echo "<td class=\"id\">$mob_id</td>";
+		echo "<td class=\"id\">$npc_id</td>";
 	}
 	//echo "<td class=\"id\"><img src=\"images/items/$armor_id.gif\"></td>";
-	echo "<td class=\"name\"><a href=\"monster_details.php?mobid=$mob_id\">$mob_name</a></td>";
-	echo "<td class=\"level\">$mob_level</td>";
+	echo "<td class=\"name\"><a href=\"npc_details.php?npcid=$npc_id\">$npc_name</a></td>";
+	echo "<td class=\"level\">$npc_level</td>";
 	echo "</tr>";
 	$i ++;	
 }

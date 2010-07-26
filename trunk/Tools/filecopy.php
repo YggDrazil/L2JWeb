@@ -6,11 +6,30 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 04/01/2007 10:50:04 AM					*/
-/* Last Updated.: 22/07/2010 12:33:20 PM					*/
+/* Last Updated.: 23/07/2010 9:26:05 AM					*/
 /**********************************************************************/
 include('header.inc.php');
-include('config.inc.php');
-include('lib.inc.php');
+/** MySQL Settings **/
+//Location of the MySQL Server
+$dbhost="localhost";
+//Name of the GameServer Database
+$dbname="l2wh";
+//Username to the MySQL Database
+$dbuser="root";
+//Password to the MySQL Database
+$dbpass="";
+
+function dbconnect(){
+	global $dbhost, $dbuser, $dbpass, $conn, $dbname;
+	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+	/** Selecting the good DB **/
+	mysql_select_db($dbname) or die(mysql_error());
+}
+
+function dbclose(){
+	global $conn;
+	mysql_close($conn);
+}
 
 
 include('menu.php');
@@ -20,17 +39,16 @@ include('menu.php');
 
 $dbname="l2webtest";
 dbconnect();
-$sql = "SELECT * FROM l2jz_items WHERE item_id < 10";
+$sql = "SELECT * FROM items";
 $result = mysql_query($sql, $conn) or die(mysql_error());
 while ($newArray = mysql_fetch_array($result)) {
-	$id = $newArray['item_id'];
-	$icon = $newArray['icon'];
+	$id = $newArray['id'];
+	$icon = $newArray['pic'];
 	
 	
 	echo "$id ";
 	echo "$icon<br>";
-	copy ( '/home/users/web/b1203/ipw.springfield-u/public_html/WYD/l2jz/i/items/$icon.png', '/home/users/web/b1203/ipw.springfield-u/public_html/WYD/l2jz/i/items/new/$id.png');
-	echo "<img src=\"../l2jz/i/items/$icon.png\">";
+	copy ( "icons/".$icon.".png", "icons/new/".$id.".png");
 	}
 dbclose();
 
