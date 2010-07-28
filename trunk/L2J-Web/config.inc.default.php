@@ -6,8 +6,10 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 24/12/2006 12:53:45 PM					*/
-/* Last Updated.: 22/07/2010 10:04:11 AM					*/
+/* Last Updated.: 28/07/2010 10:49:24 AM					*/
 /**********************************************************************/
+
+/** IMPORTANT RENAME THIS FILE TO CONFIG.INC.PHP AFTER ADDING VALUES**/
 
 /** MySQL Settings **/
 //Location of the MySQL Server
