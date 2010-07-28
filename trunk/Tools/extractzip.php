@@ -11,10 +11,10 @@
 
 $zip = new ZipArchive;
 //Enter the name of the ZIP archive	
-$res = $zip->open('test.zip');
+$res = $zip->open('items.zip');
      if ($res === TRUE) {
      		//Enter the destination path
-	       $zip->extractTo('extract/');
+	       $zip->extractTo('items/');
 	       $zip->close();
        	echo "ok";
      } else {

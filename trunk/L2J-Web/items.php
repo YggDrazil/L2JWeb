@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 3:53:45 PM					*/
-/* Last Updated.: 22/07/2010 10:44:07 AM					*/
+/* Last Updated.: 26/07/2010 12:51:39 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -67,7 +67,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 100){
 		echo "<td class=\"id\">$item_id</td>";
 	}
-	echo "<td class=\"id\"><img src=\"images/items/$item_id.gif\"></td>";
+	echo "<td class=\"id\"><img src=\"images/items/$item_id.png\"></td>";
 	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$item_id\">$item_name</a></td>";
 	echo "<td class=\"type\">$item_type</td>";
 	echo "<td class=\"weight\">$item_weight</td>";
