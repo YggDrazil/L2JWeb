@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 14/07/2010 10:38:29 AM					*/
-/* Last Updated.: 26/07/2010 12:20:34 PM					*/
+/* Last Updated.: 29/07/2010 11:45:57 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -62,7 +62,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 100){
 		echo "<td class=\"id\">$mob_id</td>";
 	}
-	//echo "<td class=\"id\"><img src=\"images/items/$armor_id.gif\"></td>";
+	//echo "<td class=\"id\"><img src=\"images/items/$armor_id.png\"></td>";
 	echo "<td class=\"name\"><a href=\"monster_details.php?mobid=$mob_id\">$mob_name</a></td>";
 	echo "<td class=\"level\">$mob_level</td>";
 	echo "</tr>";
