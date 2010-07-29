@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 14/07/2010 10:39:51 AM					*/
-/* Last Updated.: 22/07/2010 10:47:26 AM					*/
+/* Last Updated.: 29/07/2010 11:44:15 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -95,7 +95,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 100){
 		echo "<td class=\"id\">$drop_itemid</td>";
 	}
-	echo "<td class=\"id\"><img src=\"images/items/$drop_itemid.gif\"></td>";
+	echo "<td class=\"id\"><img src=\"images/items/$drop_itemid.png\"></td>";
 	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$drop_itemid\">$item_name</a></td>";
 	if ($drop_quantity_min == $drop_quantity_max){
 		echo "<td class=\"quantity\">$drop_quantity_min</td>";	
