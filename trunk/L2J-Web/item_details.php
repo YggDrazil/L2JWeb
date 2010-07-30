@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 10:28:24 PM					*/
-/* Last Updated.: 29/07/2010 11:36:50 AM					*/
+/* Last Updated.: 30/07/2010 10:21:30 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -104,7 +104,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 100){
 		echo "<td class=\"id\">$drop_mobid</td>";
 	}
-	echo "<td class=\"name\"><a href=\"map.php?mobid=$drop_mobid\">$mob_name</a></td>";
+	echo "<td class=\"name\"><a href=\"map.php?mobid=$drop_mobid\" rel=\"lightbox\" title=\"Location of $mob_name\">$mob_name</a></td>";
 	echo "<td class=\"level\">$mob_level</td>";
 	if ($drop_spoil == 1){
 		$drop_spoil_display = '<br/>Spoil';

@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 24/12/2006 12:53:45 PM					*/
-/* Last Updated.: 22/07/2010 10:04:00 AM					*/
+/* Last Updated.: 30/07/2010 10:09:20 AM					*/
 /**********************************************************************/
 include('loadtimestart.php');
 echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
@@ -32,6 +32,10 @@ echo "}\n";
 echo "return false;\n";
 echo "} \n";
 echo "</script>\n";
+echo "<script type=\"text/javascript\" src=\"js/prototype.js\"></script>\n";
+echo "<script type=\"text/javascript\" src=\"js/scriptaculous.js?load=effects,builder\"></script>\n";
+echo "<script type=\"text/javascript\" src=\"js/lightbox.js\"></script>\n";
+echo "<link rel=\"stylesheet\" href=\"css/lightbox.css\" type=\"text/css\" media=\"screen\" />\n";
 echo "</head>\n";
 echo "<body>\n";
 ?>
