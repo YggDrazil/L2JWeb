@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 14/07/2010 10:39:51 AM					*/
-/* Last Updated.: 29/07/2010 11:44:15 AM					*/
+/* Last Updated.: 30/07/2010 10:22:27 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -52,7 +52,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	if($accesslevel >= 0){
 		echo "<td class=\"id\">$mob_id</td>";
 	}
-	echo "<td class=\"name\"><a href=\"map.php?mobid=$mob_id\">$mob_name</a></td>";
+	echo "<td class=\"name\"><a href=\"map.php?mobid=$mob_id\" rel=\"lightbox\" title=\"Location of $mob_name\">$mob_name</a></td>";
 	echo "<td class=\"level\">$mob_level</td>";
 	echo "<td class=\"hp\">$mob_hp</td>";
 	echo "</tr>";
