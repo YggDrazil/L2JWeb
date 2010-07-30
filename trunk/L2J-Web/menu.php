@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 25/01/2007 9:09:42 AM					*/
-/* Last Updated.: 26/07/2010 12:16:02 PM					*/
+/* Last Updated.: 30/07/2010 1:50:32 PM					*/
 /**********************************************************************/
 echo "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" background=\"images/header/hmm.jpg\">";
 echo "<tr>";
@@ -43,6 +43,7 @@ echo "<a href=\"monsters.php\">Mobs</a> - ";
 echo "<a href=\"armors.php\">Armor</a> - ";
 echo "<a href=\"weapons.php\">Weapons</a> - ";
 echo "<a href=\"items.php\">Items</a> - ";
+echo "<a href=\"crystals.php\">Crystals</a> - ";
 echo "<a href=\"map.php\">Map</a> - ";
 echo "<a href=\"logout.php\">Logout</a> - ";
 echo "<br/>";
