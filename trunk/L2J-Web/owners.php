@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 10:19:12 PM					*/
-/* Last Updated.: 22/07/2010 10:04:11 AM					*/
+/* Last Updated.: 30/07/2010 10:00:20 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -24,15 +24,15 @@ if (empty($_GET[itemid]) || $accesslevel < 100){
 		items.owner_id AS owner,
 		clan_data.clan_name AS clan,
 		clan_data.clan_level AS clanlevel,
-		count,
-		enchant_level,
-		char_name,
-		account_name,
-		level
-	FROM items 
-	LEFT JOIN (characters) ON (items.owner_id=characters.charId)
-	LEFT JOIN (clan_data) ON (items.owner_id=clan_data.clan_id)
-	WHERE items.item_id = '$itemid'";
+		items.count,
+		items.enchant_level,
+		characters.char_name,
+		characters.account_name,
+		characters.level		
+		FROM items 
+		LEFT JOIN characters ON items.owner_id=characters.charId
+		LEFT JOIN clan_data ON items.owner_id=clan_data.clan_id
+		WHERE items.item_id = '$_GET[itemid]'";
 	
 	echo "Owners of item: $_GET[itemid]<br/>";
 	echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\">\n";
