@@ -52,17 +52,12 @@ if (!empty($_POST[sstring])){
 if (!empty($_GET[search])){
 	$search_string = $_GET[search];
 }
-if (empty($_GET[page])){
-	$search_page = "1";
-}else{
-	$search_page = $_GET[page];
-}
 if ($search_grade == 'all'){
 	$condition = "";
 }else{
 	$condition = "AND crystal_type = '$search_grade'";
 }
-paging();
+
 $sql = "SELECT 
 	item_id, 
 	name, 
@@ -80,8 +75,9 @@ $sql = "SELECT
 	crystal_count 
 	FROM weapon 
 	WHERE name LIKE '%$search_string%' $condition AND crystallizable = 'true'
-	LIMIT $limit_min,$limit_max";
-	
+	";
+paging();
+
 if (empty($search_string)){
 	exit;
 }
@@ -97,7 +93,10 @@ echo "<td class=\"name\">Name</td>";
 echo "<td class=\"type\">Grade</td>";
 echo "<td class=\"weight\">Crystals</td>";
 echo "</tr>";
-$result = mysql_query($sql, $conn) or die(mysql_error());
+$result = mysql_query($sql.$paging, $conn) or die(mysql_error());
+//
+
+//
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
 	$row_count = $newArray['count'];
@@ -123,8 +122,11 @@ while ($newArray = mysql_fetch_array($result)) {
 	$i ++;	
 }
 echo "</table>";
-echo "<a href=\"crystals.php?search=$search_string&amp;grade=$search_grade&amp;page=$search_page\">Next</a>";
-echo "$condition - $search_grade - $search_string - $search_page";
+//
+printprevnextlink();
+//
+
+echo "<br/>";
 dbclose();
 
 include('footer.inc.php');
