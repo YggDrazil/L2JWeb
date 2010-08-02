@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 3:20:21 PM					*/
-/* Last Updated.: 30/07/2010 11:17:44 AM					*/
+/* Last Updated.: 02/08/2010 11:52:21 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -77,7 +77,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	echo "<td class=\"name\"><a href=\"armor_details.php?itemid=$armor_id\">$armor_name</a></td>";
 	echo "<td class=\"type\">$armor_type</td>";
 	echo "<td class=\"weight\">$armor_weight</td>";
-	echo "<td class=\"grade\">$armor_grade</td>";
+	echo "<td class=\"grade\"><img src=\"images/grades/grade_$armor_grade.gif\"></td>";
 	echo "<td class=\"pdef\">$armor_pdef</td>";
 	echo "<td class=\"mdef\">$armor_mdef</td>";
 	echo "<td class=\"mp\">$armor_mpbonus</td>";

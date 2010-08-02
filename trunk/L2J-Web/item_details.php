@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 10:28:24 PM					*/
-/* Last Updated.: 02/08/2010 11:26:25 AM					*/
+/* Last Updated.: 02/08/2010 11:52:08 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -62,7 +62,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$item_id\">$item_name</a></td>";
 	echo "<td class=\"type\">$item_type</td>";
 	echo "<td class=\"weight\">$item_weight</td>";
-	echo "<td class=\"grade\">$item_grade</td>";
+	echo "<td class=\"grade\"><img src=\"images/grades/grade_$item_grade.gif\"></td>";
 	echo "</tr>";
 	$i ++;	
 }

@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 3:47:54 PM					*/
-/* Last Updated.: 02/08/2010 11:32:27 AM					*/
+/* Last Updated.: 02/08/2010 11:50:58 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -71,7 +71,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	echo "<td class=\"id\"><img src=\"images/items/$weapon_id.png\"></td>";
 	echo "<td class=\"name\"><a href=\"weapon_details.php?itemid=$weapon_id\">$weapon_name</a></td>";
 	echo "<td class=\"type\">$weapon_type</td>";
-	echo "<td class=\"grade\">$weapon_grade</td>";
+	echo "<td class=\"grade\"><img src=\"images/grades/grade_$weapon_grade.gif\"></td>";
 	echo "<td class=\"pmatk\">$weapon_patk/$weapon_matk</td>";
 	echo "<td class=\"ssspsmp\">x$weapon_soulshots/x$weapon_spiritshots/$weapon_mpconsume</td>";
 	echo "<td class=\"speed\">$weapon_atkspeed</td>";
