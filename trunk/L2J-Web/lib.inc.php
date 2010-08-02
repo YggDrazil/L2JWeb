@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 22/01/2007 11:37:24 PM					*/
-/* Last Updated.: 31/07/2010 1:23:00 AM					*/
+/* Last Updated.: 02/08/2010 2:02:03 PM					*/
 /**********************************************************************/
 
 /** Establishing the DB Connection **/
@@ -145,5 +145,6 @@ function printprevnextlink(){
 	// Print the navigation links
 	echo $first . $prev . 
 	" Showing page $pageNum of $maxPage pages " . $next . $last;
+	echo "<br/>";
 }
 ?>

@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 3:20:21 PM					*/
-/* Last Updated.: 02/08/2010 11:52:21 AM					*/
+/* Last Updated.: 02/08/2010 2:19:41 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -27,15 +27,23 @@ echo "</div>";
 echo "</form>";
 //End Searchbar
 
-
+if (!empty($_POST[sstring])){
+	$search_string = $_POST[sstring];
+}
+if (!empty($_GET[search])){
+	$search_string = $_GET[search];
+}
 
 
 
 dbconnect();
-if (empty($_POST[sstring])){
-}else{
-	$sql = "SELECT * FROM armor WHERE name LIKE '%$_POST[sstring]%' LIMIT 0,1000";
-	echo "Search results for \"$_POST[sstring]\":<br/>";
+if (empty($search_string)){
+	include('footer.inc.php');
+	exit;
+}
+$sql = "SELECT * FROM armor WHERE name LIKE '%$search_string%'";
+paging();
+echo "Search results for \"$search_string\":<br/>";
 
 echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\">\n";
 echo "<tr>";
@@ -51,7 +59,7 @@ echo "<td class=\"pdef\">P.Def</td>";
 echo "<td class=\"mdef\">M.Def</td>";
 echo "<td class=\"mp\">MP</td>";
 echo "</tr>";
-$result = mysql_query($sql, $conn) or die(mysql_error());
+$result = mysql_query($sql.$paging, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
 	$armor_id = $newArray['item_id'];
@@ -85,7 +93,7 @@ while ($newArray = mysql_fetch_array($result)) {
 	$i ++;	
 }
 echo "</table>";
-}
+printprevnextlink();
 dbclose();
 
 include('footer.inc.php');
