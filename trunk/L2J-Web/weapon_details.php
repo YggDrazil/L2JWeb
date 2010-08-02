@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 3:47:54 PM					*/
-/* Last Updated.: 30/07/2010 10:23:32 AM					*/
+/* Last Updated.: 02/08/2010 11:32:27 AM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -133,25 +133,22 @@ if($accesslevel >= 100){
 echo "<td class=\"name\">Name</td>";
 echo "<td class=\"price\">Price</td>";
 echo "</tr>";
-$sql = "SELECT * FROM merchant_buylists WHERE item_id = '$_GET[itemid]' LIMIT 0,1000";
+$sql = "SELECT 
+	merchant_shopids.npc_id,
+	npc.name,
+	weapon.price
+	FROM merchant_buylists 
+	INNER JOIN merchant_shopids on merchant_buylists.shop_id = merchant_shopids.shop_id
+	INNER JOIN npc on merchant_shopids.npc_id = npc.id
+	INNER JOIN weapon on merchant_buylists.item_id = weapon.item_id
+	WHERE merchant_buylists.item_id = '$_GET[itemid]'";
 $result = mysql_query($sql, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
-	$shop_id = $newArray['shop_id'];
+	$shop_id = $newArray['npc_id'];
+	$shop_name = $newArray['name'];
 	$shop_price = $newArray['price'];
-
-
-	$sql2 = "SELECT * FROM merchant_shopids WHERE shop_id = '$shop_id' LIMIT 0,1000";
-	$result2 = mysql_query($sql2, $conn) or die(mysql_error());
-	while ($newArray2 = mysql_fetch_array($result2)) {
-		$shop_npcid = $newArray2['npc_id'];
-	
-		$sql3 = "SELECT * FROM npc WHERE id = '$shop_npcid' LIMIT 0,1";
-		$result3 = mysql_query($sql3, $conn) or die(mysql_error());
-		while ($newArray3 = mysql_fetch_array($result3)) {
-			$shop_npcname = $newArray3['name'];
-	
-		if ($i %2){
+	if ($i %2){
 			$linebg = 'line1';
 		}else{
 			$linebg = 'line2';
@@ -160,13 +157,10 @@ while ($newArray = mysql_fetch_array($result)) {
 		if($accesslevel >= 100){
 			echo "<td class=\"id\">$shop_id</td>";
 		}
-		echo "<td class=\"name\">$shop_npcname</td>";
+		echo "<td class=\"name\"><a href=\"map.php?mobid=$shop_id\" rel=\"lightbox\" title=\"Location of $shop_name\">$shop_name</a></td>";
 		echo "<td class=\"price\">$shop_price</td>";
 		echo "</tr>";
 		$i ++;	
-	}
-	}
-	
 }
 echo "</table>";
 dbclose();
