@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 24/12/2006 12:53:45 PM					*/
-/* Last Updated.: 28/07/2010 10:49:24 AM					*/
+/* Last Updated.: 02/08/2010 2:02:14 PM					*/
 /**********************************************************************/
 
 /** IMPORTANT RENAME THIS FILE TO CONFIG.INC.PHP AFTER ADDING VALUES**/

@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 30/07/2010 1:07:45 PM					*/
-/* Last Updated.: 31/07/2010 1:23:07 AM					*/
+/* Last Updated.: 02/08/2010 2:01:56 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -79,6 +79,7 @@ $sql = "SELECT
 paging();
 
 if (empty($search_string)){
+	include('footer.inc.php');
 	exit;
 }
 echo "Search results for \"$search_string\":<br/>";
@@ -94,9 +95,7 @@ echo "<td class=\"type\">Grade</td>";
 echo "<td class=\"weight\">Crystals</td>";
 echo "</tr>";
 $result = mysql_query($sql.$paging, $conn) or die(mysql_error());
-//
 
-//
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
 	$row_count = $newArray['count'];
@@ -122,11 +121,10 @@ while ($newArray = mysql_fetch_array($result)) {
 	$i ++;	
 }
 echo "</table>";
-//
 printprevnextlink();
-//
 
-echo "<br/>";
+
+
 dbclose();
 
 include('footer.inc.php');
