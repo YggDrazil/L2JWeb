@@ -22,4 +22,6 @@ $dbuser="";
 $dbpass="";
 //Cookie Domain
 $cookiedomain="";
+//# of Results per page
+$rowsPerPage = 20;
 ?>

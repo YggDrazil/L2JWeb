@@ -90,13 +90,60 @@ function createloczoom(){
 }
 
 function paging(){
-	global $limit_max, $limit_min, $search_page, $row_count;
-		$limit_max = $search_page*100;
-		$limit_min = $limit_max - 100;
-		//if ($row_count > $limit_max){
-			$search_page++;
-		//}else{
-		//	$search_page = "";
-		//}
+	global $rowsPerPage, $pageNum, $rowsquery, $pageNum, $maxPage, $offset, $sql, $paging;
+		// By default show the first page
+		$pageNum = 1;
+		// If $_GET['page'] is defined, use it as page number
+		if(isset($_GET['page']))
+		{
+		$pageNum = $_GET['page'];
+		}
+		// Calculating the offset
+		$offset = ($pageNum - 1) * $rowsPerPage;
+		// SQL Query for counting the number of rows. See function paging()
+		$rowsquery   = "SELECT COUNT(*) AS numrows FROM (".$sql.") countalias";
+		$result  = mysql_query($rowsquery) or die('Error, query failed');
+		$row     = mysql_fetch_array($result, MYSQL_ASSOC);
+		$numrows = $row['numrows'];
+		// Total number of pages
+		$maxPage = ceil($numrows/$rowsPerPage);
+		// Limits the SQL results to the ones we want
+		$paging = "LIMIT $offset,$rowsPerPage";
+}
+function printprevnextlink(){
+	global $pageNum, $maxPage, $search_string, $search_grade;
+	// Print the link to access each page
+	$self = $_SERVER['PHP_SELF'];
+	// Creating Previous and Next links
+	// Plus the link to go straight to the first and last page
+	if ($pageNum > 1)
+	{
+	   $page  = $pageNum - 1;
+	   $prev  = " <a href=\"$self?search=$search_string&amp;grade=$search_grade&amp;page=$page\">[Prev]</a> ";
+	
+	   $first = " <a href=\"$self?search=$search_string&amp;grade=$search_grade&amp;page=1\">[First Page]</a> ";
+	} 
+	else
+	{
+	   $prev  = '&nbsp;'; // We are on Page One, don't print Previous link
+	   $first = '&nbsp;'; // Nor the first page link
+	}
+	
+	if ($pageNum < $maxPage)
+	{
+	   $page = $pageNum + 1;
+	   $next = " <a href=\"$self?search=$search_string&amp;grade=$search_grade&amp;page=$page\">[Next]</a> ";
+	
+	   $last = " <a href=\"$self?search=$search_string&amp;grade=$search_grade&amp;page=$maxPage\">[Last Page]</a> ";
+	} 
+	else
+	{
+	   $next = '&nbsp;'; // We are on the Last Page, don't print Next link
+	   $last = '&nbsp;'; // Nor the last page link
+	}
+	
+	// Print the navigation links
+	echo $first . $prev . 
+	" Showing page $pageNum of $maxPage pages " . $next . $last;
 }
 ?>
