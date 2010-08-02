@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 22/01/2007 11:37:24 PM					*/
-/* Last Updated.: 22/07/2010 10:05:08 AM					*/
+/* Last Updated.: 31/07/2010 1:23:00 AM					*/
 /**********************************************************************/
 
 /** Establishing the DB Connection **/
@@ -87,5 +87,16 @@ function createloczoom(){
 	$resultx = (($xi_max - $xi_min) * $resultx) + $xi_min;
 	$resulty = ($currenty - $ycoor_min) / ($ycoor_max - $ycoor_min);
 	$resulty = (($yi_max - $yi_min) * $resulty) + $yi_min;
+}
+
+function paging(){
+	global $limit_max, $limit_min, $search_page, $row_count;
+		$limit_max = $search_page*100;
+		$limit_min = $limit_max - 100;
+		//if ($row_count > $limit_max){
+			$search_page++;
+		//}else{
+		//	$search_page = "";
+		//}
 }
 ?>
