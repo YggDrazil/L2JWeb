@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 10:27:22 PM					*/
-/* Last Updated.: 05/08/2010 2:18:10 PM					*/
+/* Last Updated.: 05/08/2010 2:32:49 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -21,11 +21,7 @@ if (empty($_GET[itemid])){
 	exit;
 }
 dbconnect();
-$sql = "SELECT COUNT(*) AS count FROM items WHERE item_id = '$_GET[itemid]'";
-$result = mysql_query($sql, $conn) or die(mysql_error());
-while ($newArray = mysql_fetch_array($result)) {
-	$item_count = $newArray['count'];
-}
+itemcount();
 $sql = "SELECT * FROM etcitem WHERE item_id = '$_GET[itemid]' LIMIT 0,1";
 echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\">\n";
 echo "<tr>";

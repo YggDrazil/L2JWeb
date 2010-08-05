@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 22/01/2007 11:37:24 PM					*/
-/* Last Updated.: 05/08/2010 1:45:24 PM					*/
+/* Last Updated.: 05/08/2010 2:33:13 PM					*/
 /**********************************************************************/
 
 /** Establishing the DB Connection **/
@@ -151,5 +151,13 @@ function calculatedropchance($dropchance){
 	global $drop_chance_pct;
 	$drop_chance_pct = $dropchance / 10000;
 	$drop_chance_pct = round($drop_chance_pct, 3);
+}
+function itemcount(){
+	global $item_count, $conn;
+	$sql = "SELECT SUM(count) as count FROM items WHERE item_id = '$_GET[itemid]'";
+	$result = mysql_query($sql, $conn) or die(mysql_error());
+	while ($newArray = mysql_fetch_array($result)) {
+		$item_count = $newArray['count'];
+	}
 }
 ?>
