@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 23/01/2007 10:25:41 PM					*/
-/* Last Updated.: 02/08/2010 11:51:25 AM					*/
+/* Last Updated.: 05/08/2010 2:03:40 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -88,19 +88,22 @@ echo "<td class=\"name\">Name</td>";
 echo "<td class=\"level\">Level</td>";
 echo "<td class=\"chance\">Chance</td>";
 echo "</tr>";
-$sql = "SELECT * FROM droplist WHERE itemId = '$_GET[itemid]' LIMIT 0,1000";
+$sql = "SELECT 
+	droplist.mobId, 
+	droplist.chance, 
+	npc.name, 
+	npc.level 
+	FROM droplist 
+	INNER JOIN npc ON droplist.mobId = npc.id
+	WHERE itemId = '$_GET[itemid]'
+	AND droplist.category IN ('0', '1', '2')";
 $result = mysql_query($sql, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
 	$drop_mobid = $newArray['mobId'];
 	$drop_chance = $newArray['chance'];
-
-
-	$sql2 = "SELECT * FROM npc WHERE id = '$drop_mobid' LIMIT 0,1000";
-	$result2 = mysql_query($sql2, $conn) or die(mysql_error());
-	while ($newArray2 = mysql_fetch_array($result2)) {
-		$mob_name = $newArray2['name'];
-		$mob_level = $newArray2['level'];
+	$mob_name = $newArray['name'];
+	$mob_level = $newArray['level'];
 	
 	if ($i %2){
 			$linebg = 'line1';
@@ -113,17 +116,62 @@ while ($newArray = mysql_fetch_array($result)) {
 	}
 	echo "<td class=\"name\"><a href=\"map.php?mobid=$drop_mobid\" rel=\"lightbox\" title=\"Location of $mob_name\">$mob_name</a></td>";
 	echo "<td class=\"level\">$mob_level</td>";
-	if ($drop_spoil == 1){
-		$drop_spoil_display = '<br/>Spoil';
-	}
-	$drop_chance_pct = $drop_chance / 1000;
-	echo "<td class=\"chance\">$drop_chance_pct % $drop_spoil_display</td>";
+	calculatedropchance($drop_chance);
+	echo "<td class=\"chance\">$drop_chance_pct %</td>";
 	echo "</tr>";
-	}
+
 	$i ++;
 	
 }
 echo "</table>";
+
+echo "<br/><b>Spoils:</b><br/>";
+echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" width=\"389\">\n";
+echo "<tr>";
+if($accesslevel >= 100){
+	echo "<td class=\"id\">ID</td>";
+}
+echo "<td class=\"name\">Name</td>";
+echo "<td class=\"level\">Level</td>";
+echo "<td class=\"chance\">Chance</td>";
+echo "</tr>";
+$sql = "SELECT 
+	droplist.mobId, 
+	droplist.chance, 
+	npc.name, 
+	npc.level 
+	FROM droplist 
+	INNER JOIN npc ON droplist.mobId = npc.id
+	WHERE droplist.itemId = '$_GET[itemid]'
+	AND droplist.category = '-1'";
+$result = mysql_query($sql, $conn) or die(mysql_error());
+$i = 1;
+while ($newArray = mysql_fetch_array($result)) {
+	$drop_mobid = $newArray['mobId'];
+	$drop_chance = $newArray['chance'];
+	$mob_name = $newArray['name'];
+	$mob_level = $newArray['level'];
+	
+	if ($i %2){
+			$linebg = 'line1';
+		}else{
+			$linebg = 'line2';
+		}
+	echo "<tr class=\"$linebg\">";
+	if($accesslevel >= 100){
+		echo "<td class=\"id\">$drop_mobid</td>";
+	}
+	echo "<td class=\"name\"><a href=\"map.php?mobid=$drop_mobid\" rel=\"lightbox\" title=\"Location of $mob_name\">$mob_name</a></td>";
+	echo "<td class=\"level\">$mob_level</td>";
+	calculatedropchance($drop_chance);
+	echo "<td class=\"chance\">$drop_chance_pct %</td>";
+	echo "</tr>";
+
+	$i ++;
+	
+}
+echo "</table>";
+
 echo "<br/><b>Shops:</b><br/>";
 echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" width=\"344\">\n";
 echo "<tr>";

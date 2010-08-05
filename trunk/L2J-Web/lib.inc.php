@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 22/01/2007 11:37:24 PM					*/
-/* Last Updated.: 02/08/2010 2:02:03 PM					*/
+/* Last Updated.: 05/08/2010 1:45:24 PM					*/
 /**********************************************************************/
 
 /** Establishing the DB Connection **/
@@ -146,5 +146,10 @@ function printprevnextlink(){
 	echo $first . $prev . 
 	" Showing page $pageNum of $maxPage pages " . $next . $last;
 	echo "<br/>";
+}
+function calculatedropchance($dropchance){
+	global $drop_chance_pct;
+	$drop_chance_pct = $dropchance / 10000;
+	$drop_chance_pct = round($drop_chance_pct, 3);
 }
 ?>
