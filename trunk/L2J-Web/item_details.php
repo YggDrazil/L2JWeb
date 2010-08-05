@@ -169,9 +169,6 @@ if($accesslevel >= 100){
 echo "<td class=\"name\">Name</td>";
 echo "<td class=\"price\">Price</td>";
 echo "</tr>";
-
-
-
 $sql = "SELECT 
 	merchant_shopids.npc_id,
 	npc.name,
