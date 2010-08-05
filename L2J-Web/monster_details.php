@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 14/07/2010 10:39:51 AM					*/
-/* Last Updated.: 30/07/2010 10:22:27 AM					*/
+/* Last Updated.: 05/08/2010 1:41:37 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -71,7 +71,18 @@ echo "<td class=\"name\">Name</td>";
 echo "<td class=\"quantity\">Quantity</td>";
 echo "<td class=\"chance\">Chance</td>";
 echo "</tr>";
-$sql = "SELECT droplist.*, etcitem.name FROM droplist INNER JOIN etcitem on droplist.itemId = etcitem.item_id WHERE mobId = '$_GET[mobid]' LIMIT 0,1000";
+$sql = "SELECT 
+	droplist.*, 
+	etcitem.name AS itemname, 
+	armor.name AS armorname, 
+	weapon.name as weaponname 
+	FROM droplist
+	LEFT JOIN etcitem on droplist.itemId = etcitem.item_id
+	LEFT JOIN armor on droplist.itemId = armor.item_id
+	LEFT JOIN weapon on droplist.itemId = weapon.item_id
+	WHERE droplist.mobId = '$_GET[mobid]' 
+	AND droplist.category IN ('0', '1', '2')";
+
 $result = mysql_query($sql, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
@@ -80,35 +91,36 @@ while ($newArray = mysql_fetch_array($result)) {
 	$drop_quantity_max = $newArray['max'];
 	$drop_category = $newArray['category'];
 	$drop_chance = $newArray['chance'];
-	$item_name = $newArray['name'];
+	$item_name = $newArray['itemname'];
+	$armor_name = $newArray['armorname'];
+	$weapon_name = $newArray['weaponname'];
 	if ($i %2){
 			$linebg = 'line1';
 		}else{
 			$linebg = 'line2';
 		}
 	echo "<tr class=\"$linebg\">";
-	if($drop_category == -1){
-		$drop_spoil = 1;
-	}else{
-		$drop_spoil = 0;
-	}
 	if($accesslevel >= 100){
 		echo "<td class=\"id\">$drop_itemid</td>";
 	}
 	echo "<td class=\"id\"><img src=\"images/items/$drop_itemid.png\"></td>";
-	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$drop_itemid\">$item_name</a></td>";
+	if (!empty($item_name)){
+		$display_name = $item_name;
+	}
+	if (!empty($armor_name)){
+		$display_name = $armor_name;
+	}
+	if (!empty($weapon_name)){
+		$display_name = $weapon_name;
+	}
+	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$drop_itemid\">$display_name</a></td>";
 	if ($drop_quantity_min == $drop_quantity_max){
 		echo "<td class=\"quantity\">$drop_quantity_min</td>";	
 	}else{
 		echo "<td class=\"quantity\">$drop_quantity_min - $drop_quantity_max</td>";
 	}
-	$drop_chance_pct = $drop_chance / 1000;
-	$drop_chance_pct = round($drop_chance_pct, 2);
-	if ($drop_spoil == 1){
-		echo "<td class=\"chance\">$drop_chance_pct %<br/>[Spoil]</td>";
-	}else{
-		echo "<td class=\"chance\">$drop_chance_pct %</td>";
-	}
+	calculatedropchance($drop_chance);
+	echo "<td class=\"chance\">$drop_chance_pct %</td>";
 	echo "</tr>";
 	$i ++;
 	
@@ -120,27 +132,33 @@ echo "<tr>";
 if($accesslevel >= 0){
 	echo "<td class=\"id\">ID</td>";
 }
+echo "<td class=\"id\">Icon</td>";
 echo "<td class=\"name\">Name</td>";
-echo "<td class=\"price\">Price</td>";
+echo "<td class=\"quantity\">Quantity</td>";
+echo "<td class=\"chance\">Chance</td>";
 echo "</tr>";
-$sql = "SELECT * FROM merchant_buylists WHERE item_id = '$_GET[itemid]' LIMIT 0,1000";
+$sql = "SELECT 
+	droplist.*, 
+	etcitem.name AS itemname, 
+	armor.name AS armorname, 
+	weapon.name as weaponname 
+	FROM droplist
+	LEFT JOIN etcitem on droplist.itemId = etcitem.item_id
+	LEFT JOIN armor on droplist.itemId = armor.item_id
+	LEFT JOIN weapon on droplist.itemId = weapon.item_id
+	WHERE droplist.mobId = '$_GET[mobid]'
+	AND droplist.category = '-1'";
 $result = mysql_query($sql, $conn) or die(mysql_error());
 $i = 1;
 while ($newArray = mysql_fetch_array($result)) {
-	$shop_id = $newArray['shop_id'];
-	$shop_price = $newArray['price'];
-
-
-	$sql2 = "SELECT * FROM merchant_shopids WHERE shop_id = '$shop_id' LIMIT 0,1000";
-	$result2 = mysql_query($sql2, $conn) or die(mysql_error());
-	while ($newArray2 = mysql_fetch_array($result2)) {
-		$shop_npcid = $newArray2['npc_id'];
-	
-		$sql3 = "SELECT * FROM npc WHERE id = '$shop_npcid' LIMIT 0,1";
-		$result3 = mysql_query($sql3, $conn) or die(mysql_error());
-		while ($newArray3 = mysql_fetch_array($result3)) {
-			$shop_npcname = $newArray3['name'];
-
+	$drop_itemid = $newArray['itemId'];
+	$drop_quantity_min = $newArray['min'];
+	$drop_quantity_max = $newArray['max'];
+	$drop_category = $newArray['category'];
+	$drop_chance = $newArray['chance'];
+	$item_name = $newArray['itemname'];
+	$armor_name = $newArray['armorname'];
+	$weapon_name = $newArray['weaponname'];
 	if ($i %2){
 			$linebg = 'line1';
 		}else{
@@ -148,16 +166,29 @@ while ($newArray = mysql_fetch_array($result)) {
 		}
 		echo "<tr class=\"$linebg\">";
 		if($accesslevel >= 100){
-			echo "<td class=\"id\">$shop_id</td>";
+			echo "<td class=\"id\">$drop_itemid</td>";
 		}
-		echo "<td class=\"name\">$shop_npcname</td>";
-		echo "<td class=\"price\">$shop_price</td>";
+		echo "<td class=\"id\"><img src=\"images/items/$drop_itemid.png\"></td>";
+		if (!empty($item_name)){
+		$display_name = $item_name;
+		}
+		if (!empty($armor_name)){
+			$display_name = $armor_name;
+		}
+		if (!empty($weapon_name)){
+			$display_name = $weapon_name;
+		}
+		echo "<td class=\"name\"><a href=\"item_details.php?itemid=$drop_itemid\">$display_name</a></td>";
+		if ($drop_quantity_min == $drop_quantity_max){
+			echo "<td class=\"quantity\">$drop_quantity_min</td>";	
+		}else{
+			echo "<td class=\"quantity\">$drop_quantity_min - $drop_quantity_max</td>";
+		}
+		echo "<td class=\"chance\">$drop_chance_pct %</td>";
 		echo "</tr>";
 		$i ++;	
-	}
-	}
-	
 }
+
 echo "</table>";
 dbclose();
 
