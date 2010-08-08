@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 26/01/2007 6:50:34 PM					*/
-/* Last Updated.: 22/07/2010 10:41:15 AM					*/
+/* Last Updated.: 06/08/2010 7:32:46 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -53,7 +53,8 @@ $sql = "SELECT characters.charId,
 	FROM characters 
 	INNER JOIN class_list ON characters.classid = class_list.id
 	WHERE charId = '$_GET[playerid]' LIMIT 0,1";
-	
+
+echo "<a href=\"player_recipebook.php?playerid=$_GET[playerid]\">Recipe Book</a><br/>";	
 echo "<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\">\n";
 echo "<tr>";
 echo "<td>Account Name</td>";
@@ -219,38 +220,17 @@ while ($newArray = mysql_fetch_array($result)) {
 	}else{
 		$item_enchant_level_sign = "+";
 	}
-	if(empty($item_etcname) && empty($item_weaponname)){
+	if(!empty($item_armorname)){
 		echo "<td class=\"name\">$item_armorname <b>$item_enchant_level_sign$item_enchant_level</b></td>";
+		echo "<td class=\"id\"><img src=\"images/grades/grade_$item_armorgrade.gif\"></td>";
 	}
-	elseif(empty($item_etcname) && empty($item_armorname)){
+	if(!empty($item_weaponname)){
 		echo "<td class=\"name\">$item_weaponname <b>$item_enchant_level_sign$item_enchant_level</b></td>";
+		echo "<td class=\"id\"><img src=\"images/grades/grade_$item_weapongrade.gif\"></td>";
 	}
-	elseif(empty($item_weaponname) && empty($item_armorname)){
+	if(!empty($item_etcname)){
 		echo "<td class=\"name\">$item_etcname <b>$item_enchant_level_sign$item_enchant_level</b></td>";
-	}
-	if(empty($item_etcgrade) && empty($item_weapongrade)){
-		if($item_armorgrade == 'none'){
-			$item_armorgrade = '';
-		}
-		$item_armorgrade = strtoupper($item_armorgrade);
-		echo "<td class=\"id\">$item_armorgrade</td>";
-	}
-	elseif(empty($item_etcgrade) && empty($item_armorgrade)){
-		if($item_weapongrade == 'none'){
-			$item_weapongrade = '';
-		}
-		$item_weapongrade = strtoupper($item_weapongrade);
-		echo "<td class=\"id\">$item_weapongrade</td>";
-	}
-	elseif(empty($item_weapongrade) && empty($item_armorgrade)){
-		if($item_etcgrade == 'none'){
-			$item_etcgrade = '';
-		}
-		$item_etcgrade = strtoupper($item_etcgrade);
-		echo "<td class=\"id\">$item_etcgrade</td>";
-	}
-	if($item_loc == 'PAPERDOLL'){
-		$item_loc = 'WEARING';
+		echo "<td class=\"id\"><img src=\"images/grades/grade_$item_etcgrade.gif\"></td>";
 	}
 	echo "<td class=\"id\">$item_loc</td>";
 	echo "<td class=\"id\">$item_loc_data</td>";

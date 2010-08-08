@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 24/12/2006 12:53:45 PM					*/
-/* Last Updated.: 30/07/2010 10:09:20 AM					*/
+/* Last Updated.: 08/08/2010 2:41:33 PM					*/
 /**********************************************************************/
 include('loadtimestart.php');
 echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
@@ -17,6 +17,8 @@ echo "<title>WYD Lineage 2</title>\n";
 echo "<meta name=\"description\" content=\"\"/>\n";
 echo "<meta name=\"keywords\" content=\"\"/>\n";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" />\n";
+echo "<!--[if gte IE 9 ]><link rel=\"stylesheet\" type=\"text/css\" href=\"css/tree.css\" media=\"screen\"><![endif]-->\n";
+echo "<!--[if !IE]>--><link rel=\"stylesheet\" type=\"text/css\" href=\"css/tree.css\" media=\"screen\"><!--<![endif]-->\n";
 echo "<script type=\"text/javascript\">\n";
 echo "function showAndHide(theId) {\n";
 echo "var el = document.getElementById(theId);\n";

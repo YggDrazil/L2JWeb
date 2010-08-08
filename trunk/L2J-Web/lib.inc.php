@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 22/01/2007 11:37:24 PM					*/
-/* Last Updated.: 05/08/2010 2:33:13 PM					*/
+/* Last Updated.: 08/08/2010 1:20:59 PM					*/
 /**********************************************************************/
 
 /** Establishing the DB Connection **/
@@ -159,5 +159,51 @@ function itemcount(){
 	while ($newArray = mysql_fetch_array($result)) {
 		$item_count = $newArray['count'];
 	}
+}
+function checkifrecipeexist($recipeid){
+	global $conn, $recipe_exist;
+	$sql = "SELECT l2wh_recipes.id FROM l2wh_recipes WHERE l2wh_recipes.item ='$recipeid'";
+	$result = mysql_query($sql, $conn) or die(mysql_error());
+	while ($newArray = mysql_fetch_array($result)) {
+		$recipe_exist = $newArray['id'];
+		if(empty($recipe_exist)){
+			return false;
+		}else{
+			return true;
+		}
+	}
+}
+
+function listrecipeitems($subitem_id){
+	global $conn, $recipe_exist;
+	$sql = "SELECT 
+	etcitem.item_id, 
+	l2wh_recitems.q, 
+	etcitem.name,
+	etcitem.crystal_type 
+	FROM  l2wh_recitems
+	INNER JOIN etcitem on l2wh_recitems.item = etcitem.item_id
+	WHERE rid = '$subitem_id'";
+	$result = mysql_query($sql, $conn) or die(mysql_error());
+while ($newArray = mysql_fetch_array($result)) {
+	$sub_item_id = $newArray['item_id'];
+	$sub_recipe_id = $newArray['id'];
+	$subitem_quantity = $newArray['q'];
+	$subitem_name = $newArray['name'];
+	$subitem_grade = $newArray['crystal_type'];
+	
+	$x = checkifrecipeexist($sub_item_id);
+	if ($x == false){
+		echo "<li class=\"nochild\"><img src=\"images/items/$sub_item_id.png\"> $subitem_name [$subitem_quantity]</li>";
+	}else{
+		$label_id = rand(1,500);
+		echo "<li><label for=\"$label_id\"><img src=\"images/items/$sub_item_id.png\"> $subitem_name [$subitem_quantity]</label> <input type=\"checkbox\" id=\"$label_id\" />";
+		echo "<ol>";
+		listrecipeitems($recipe_exist);
+		echo "</ol>";
+		echo "</li>";
+	}
+	
+}
 }
 ?>
