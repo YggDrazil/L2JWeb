@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 14/07/2010 10:39:51 AM					*/
-/* Last Updated.: 05/08/2010 1:41:37 PM					*/
+/* Last Updated.: 13/08/2010 3:36:58 PM					*/
 /**********************************************************************/
 include('header.inc.php');
 include('config.inc.php');
@@ -68,14 +68,18 @@ if($accesslevel >= 100){
 }
 echo "<td class=\"id\">Icon</td>";
 echo "<td class=\"name\">Name</td>";
+echo "<td class=\"grade\">Grade</td>";
 echo "<td class=\"quantity\">Quantity</td>";
 echo "<td class=\"chance\">Chance</td>";
 echo "</tr>";
 $sql = "SELECT 
 	droplist.*, 
-	etcitem.name AS itemname, 
+	etcitem.name AS itemname,
+	etcitem.crystal_type AS itemgrade,  
 	armor.name AS armorname, 
-	weapon.name as weaponname 
+	armor.crystal_type AS armorgrade, 
+	weapon.name AS weaponname, 
+	weapon.crystal_type AS weapongrade
 	FROM droplist
 	LEFT JOIN etcitem on droplist.itemId = etcitem.item_id
 	LEFT JOIN armor on droplist.itemId = armor.item_id
@@ -92,8 +96,11 @@ while ($newArray = mysql_fetch_array($result)) {
 	$drop_category = $newArray['category'];
 	$drop_chance = $newArray['chance'];
 	$item_name = $newArray['itemname'];
+	$item_grade = $newArray['itemgrade'];
 	$armor_name = $newArray['armorname'];
+	$armor_grade = $newArray['armorgrade'];
 	$weapon_name = $newArray['weaponname'];
+	$weapon_grade = $newArray['weapongrade'];
 	if ($i %2){
 			$linebg = 'line1';
 		}else{
@@ -106,14 +113,18 @@ while ($newArray = mysql_fetch_array($result)) {
 	echo "<td class=\"id\"><img src=\"images/items/$drop_itemid.png\"></td>";
 	if (!empty($item_name)){
 		$display_name = $item_name;
+		$grade = $item_grade;
 	}
 	if (!empty($armor_name)){
 		$display_name = $armor_name;
+		$grade = $armor_grade;
 	}
 	if (!empty($weapon_name)){
 		$display_name = $weapon_name;
+		$grade = $weapon_grade;
 	}
 	echo "<td class=\"name\"><a href=\"item_details.php?itemid=$drop_itemid\">$display_name</a></td>";
+	echo "<td class=\"grade\"><img src=\"images/grades/grade_$grade.gif\"></td>";
 	if ($drop_quantity_min == $drop_quantity_max){
 		echo "<td class=\"quantity\">$drop_quantity_min</td>";	
 	}else{
