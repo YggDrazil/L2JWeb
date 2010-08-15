@@ -6,7 +6,7 @@
 /* Author.......: Sebastien Gascon						*/
 /* Author Email.: sebastien.gascon@gmail.com				*/
 /* Created On...: 25/01/2007 9:09:42 AM					*/
-/* Last Updated.: 08/08/2010 2:30:13 PM					*/
+/* Last Updated.: 15/08/2010 1:32:12 AM					*/
 /**********************************************************************/
 echo "<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" background=\"images/header/hmm.jpg\">";
 echo "<tr>";
@@ -46,6 +46,20 @@ echo "<ul class=\"select\"><li><a href=\"online.php\" target=\"_self\"><b>Online
 echo "</li>";
 echo "</ul>";
 echo "<ul class=\"select\"><li><a href=\"players.php\" target=\"_self\"><b>Players</b></a>";
+echo "</li>";
+echo "</ul>";
+echo "<ul class=\"select\"><li><a href=\"search.php\" target=\"_self\"><b>Search</b></a>";
+echo "<div class=\"select_sub\">";
+echo "<ul class=\"sub\">";
+echo "<li><a href=\"search.php?category=armor\" target=\"_self\">Armors</a></li>";
+echo "<li><a href=\"search.php?category=item\" target=\"_self\">Items</a></li>";
+echo "<li><a href=\"search.php?category=monster\" target=\"_self\">Monsters</a></li>";
+echo "<li><a href=\"search.php?category=npc\" target=\"_self\">NPC</a></li>";
+echo "<li><a href=\"search.php?category=recipe\" target=\"_self\">Recipes</a></li>";
+echo "<li><a href=\"search.php?category=spellbook\" target=\"_self\">Spellbooks</a></li>";
+echo "<li><a href=\"search.php?category=weapon\" target=\"_self\">Weapons</a></li>";
+echo "</ul>";
+echo "</div>";
 echo "</li>";
 echo "</ul>";
 echo "<ul class=\"select\"><li><a href=\"npc.php\" target=\"_self\"><b>NPC</b></a>";

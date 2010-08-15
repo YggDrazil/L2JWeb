@@ -1,11 +1,12 @@
-/*************************************************/
-/* Project Name.: WYD Lineage 2 Website		*/
-/* File Name....: styles.css			*/
-/* Author.......: The_Dogg 				*/
-/* Author Email.: The_Dogg@springfield-u.com	*/
-/* Last Updated.: 24/12/2006 12:53			*/
-/*************************************************/
-
+/**********************************************************************/
+/* Project Name.: L2J-Web							*/
+/* SVN .........: https://l2j-web.googlecode.com/svn/trunk/L2J-Web/	*/
+/* File Name....: items.php							*/
+/* Author.......: Sebastien Gascon						*/
+/* Author Email.: sebastien.gascon@gmail.com				*/
+/* Created On...: 24/12/2006 12:53:02 PM					*/
+/* Last Updated.: 15/08/2010 12:07:32 AM					*/
+/**********************************************************************/
 BODY		{ color: #c2c2c2; margin: 0; background-color: #373c3d; font-family: Verdana,sans-serif; font-size: 10pt; text-align: center }
 INPUT		{ border: 2px solid #000000; background-color: #ffffff; color: #000000; font-family: Verdana,sans-serif; font-weight: bold; font-size: 8pt }
 SELECT		{ border: 2px solid #000000; background-color: #ffffff; color: #000000; font-family: Verdana,sans-serif; font-weight: bold; font-size: 8pt }
@@ -16,6 +17,7 @@ A:hover       { color: #e36c1b; font-size: 11px; font-family: Verdana, sans-seri
 table 		{ margin-left:auto; margin-right:auto; }
 /*TD		{ border: 2px solid #656565; }*/
 TD.id		{ width: 39px; text-align: center }
+TD.icon	{ width: 39px; text-align: center }
 TD.name	{ width: 236px; text-align: left }
 TD.type	{ width: 100px; text-align: center }
 TD.grade	{ width: 40px; text-align: center }
